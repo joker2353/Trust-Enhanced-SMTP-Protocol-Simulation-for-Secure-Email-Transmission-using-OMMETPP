@@ -123,6 +123,6 @@ cd ../simulations
 🗂️ License
 LGPL (OMNeT++ sample licensing).
 
-> Tip: Icons in Qtenv come from OMNeT++’s built‑in image set (via `@display("i=...")` in NED/INI).
+
 
 
