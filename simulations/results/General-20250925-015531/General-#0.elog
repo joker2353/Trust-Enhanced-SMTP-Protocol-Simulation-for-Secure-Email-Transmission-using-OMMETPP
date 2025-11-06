@@ -1,0 +1,189 @@
+SB ov 1538 ev 2 rid General-0-20250925-01:55:31-8776
+
+E # 0 t 0 m 1 ce -1 msg -1
+MC id 1 c omnetpp::cModule t peyal.TrustSMTPNetwork n TrustSMTPNetwork cm 1
+MDC id 1 d ""
+MC id 2 c TrustManager t peyal.TrustManager pid 1 n tm
+MDC id 2 d p=200,100
+MC id 3 c SMTPClient t peyal.SMTPClient pid 1 n hostA
+GC m 3 g 1 n out o 1
+MDC id 3 d p=100,300
+MC id 4 c SMTPServer t peyal.SMTPServer pid 1 n srvA
+GC m 4 g 0 n in o 0
+MDC id 4 d p=100,400
+MC id 5 c SMTPClient t peyal.SMTPClient pid 1 n hostB
+GC m 5 g 1 n out o 1
+MDC id 5 d p=350,300
+MC id 6 c SMTPServer t peyal.SMTPServer pid 1 n srvB
+GC m 6 g 0 n in o 0
+MDC id 6 d p=350,400
+GC m 2 g 1048576 n in i 0 o 0
+CC sm 3 sg 1 dm 2 dg 1048576
+CDC sm 3 sg 1 d ""
+GC m 2 g 1048577 n in i 1 o 0
+CC sm 5 sg 1 dm 2 dg 1048577
+CDC sm 5 sg 1 d ""
+GC m 2 g 2621440 n out i 0 o 1
+CC sm 2 sg 2621440 dm 4 dg 0
+CDC sm 2 sg 2621440 d ""
+GC m 2 g 2621441 n out i 1 o 1
+CC sm 2 sg 2621441 dm 6 dg 0
+CDC sm 2 sg 2621441 d ""
+CMB sm 1 tm 2 m initialize(0)
+CME
+CMB sm 1 tm 3 m initialize(0)
+CM id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer pe -1
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 3 st 0 am 3 at 1.097627004609 pe 0
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 3 st 0 am 3 at 1.097627004609 pe 0
+CME
+CMB sm 1 tm 4 m initialize(0)
+CME
+CMB sm 1 tm 5 m initialize(0)
+CM id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer pe -1
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 0 am 5 at 0.355706769833 pe 0
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 0 am 5 at 0.355706769833 pe 0
+CME
+CMB sm 1 tm 6 m initialize(0)
+CME
+
+E # 1 t 0.355706769833 m 5 ce 0 msg 1
+CM id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n m pe -1
+- INFO: Client hostB sending message 0 trust=0.2
+BS id 2 tid 2 eid 2 etid 2 c TrustSMTPMessage n m m 5 pe 1
+SH sm 5 sg 1 pd 0.001
+ES id 2 tid 2 eid 2 etid 2 c TrustSMTPMessage n m sm 5 sg 1 st 0.355706769833 am 2 ag 1048577 at 0.356706769833 pe 1
+CL id 3 tid 2 eid 3 etid 2 c omnetpp::cMessage n m m 5 pe -1 cid 2
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 0.355706769833 am 5 at 0.955706769833 pe 1
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 0.355706769833 am 5 at 0.955706769833 pe 1
+
+E # 2 t 0.356706769833 m 2 ce 1 msg 2
+- INFO: TrustManager dropping msg 0 from hostB trust=0.2
+DM id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n m m 2 pe 2
+
+E # 3 t 0.955706769833 m 5 ce 1 msg 1
+CM id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n m pe -1
+- INFO: Client hostB sending message 1 trust=0.2
+BS id 3 tid 3 eid 3 etid 3 c TrustSMTPMessage n m m 5 pe 3
+SH sm 5 sg 1 pd 0.001
+ES id 3 tid 3 eid 3 etid 3 c TrustSMTPMessage n m sm 5 sg 1 st 0.955706769833 am 2 ag 1048577 at 0.956706769833 pe 3
+CL id 4 tid 3 eid 4 etid 3 c omnetpp::cMessage n m m 5 pe -1 cid 3
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 0.955706769833 am 5 at 1.555706769833 pe 3
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 0.955706769833 am 5 at 1.555706769833 pe 3
+
+E # 4 t 0.956706769833 m 2 ce 3 msg 3
+- INFO: TrustManager dropping msg 1 from hostB trust=0.2
+DM id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n m m 2 pe 4
+
+E # 5 t 1.097627004609 m 3 ce 0 msg 0
+CM id 4 tid 4 eid 4 etid 4 c omnetpp::cMessage n m pe -1
+- INFO: Client hostA sending message 0 trust=0.9
+BS id 4 tid 4 eid 4 etid 4 c TrustSMTPMessage n m m 3 pe 5
+SH sm 3 sg 1 pd 0.001
+ES id 4 tid 4 eid 4 etid 4 c TrustSMTPMessage n m sm 3 sg 1 st 1.097627004609 am 2 ag 1048576 at 1.098627004609 pe 5
+CL id 5 tid 4 eid 5 etid 4 c omnetpp::cMessage n m m 3 pe -1 cid 4
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 3 st 1.097627004609 am 3 at 3.097627004609 pe 5
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 3 st 1.097627004609 am 3 at 3.097627004609 pe 5
+
+E # 6 t 1.098627004609 m 2 ce 5 msg 4
+- INFO: TrustManager forwarding msg 0 to hostB via out[1]
+BS id 4 tid 4 eid 4 etid 4 c TrustSMTPMessage n m m 2 pe 6
+SH sm 2 sg 2621441 pd 0.001
+ES id 4 tid 4 eid 4 etid 4 c TrustSMTPMessage n m sm 2 sg 2621441 st 1.098627004609 am 6 ag 0 at 1.099627004609 pe 6
+CL id 5 tid 4 eid 5 etid 4 c omnetpp::cMessage n m m 2 pe -1 cid 4
+
+E # 7 t 1.099627004609 m 6 ce 6 msg 4
+- INFO: Server hostB received msg 0 from hostA size=1024 trust=0.9
+DM id 4 tid 4 eid 4 etid 4 c omnetpp::cMessage n m m 6 pe 7
+
+E # 8 t 1.555706769833 m 5 ce 3 msg 1
+CM id 5 tid 5 eid 5 etid 5 c omnetpp::cMessage n m pe -1
+- INFO: Client hostB sending message 2 trust=0.2
+BS id 5 tid 5 eid 5 etid 5 c TrustSMTPMessage n m m 5 pe 8
+SH sm 5 sg 1 pd 0.001
+ES id 5 tid 5 eid 5 etid 5 c TrustSMTPMessage n m sm 5 sg 1 st 1.555706769833 am 2 ag 1048577 at 1.556706769833 pe 8
+CL id 6 tid 5 eid 6 etid 5 c omnetpp::cMessage n m m 5 pe -1 cid 5
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 1.555706769833 am 5 at 2.155706769833 pe 8
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 1.555706769833 am 5 at 2.155706769833 pe 8
+
+E # 9 t 1.556706769833 m 2 ce 8 msg 5
+- INFO: TrustManager dropping msg 2 from hostB trust=0.2
+DM id 5 tid 5 eid 5 etid 5 c omnetpp::cMessage n m m 2 pe 9
+
+E # 10 t 2.155706769833 m 5 ce 8 msg 1
+CM id 6 tid 6 eid 6 etid 6 c omnetpp::cMessage n m pe -1
+- INFO: Client hostB sending message 3 trust=0.2
+BS id 6 tid 6 eid 6 etid 6 c TrustSMTPMessage n m m 5 pe 10
+SH sm 5 sg 1 pd 0.001
+ES id 6 tid 6 eid 6 etid 6 c TrustSMTPMessage n m sm 5 sg 1 st 2.155706769833 am 2 ag 1048577 at 2.156706769833 pe 10
+CL id 7 tid 6 eid 7 etid 6 c omnetpp::cMessage n m m 5 pe -1 cid 6
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 2.155706769833 am 5 at 2.755706769833 pe 10
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 2.155706769833 am 5 at 2.755706769833 pe 10
+
+E # 11 t 2.156706769833 m 2 ce 10 msg 6
+- INFO: TrustManager dropping msg 3 from hostB trust=0.2
+DM id 6 tid 6 eid 6 etid 6 c omnetpp::cMessage n m m 2 pe 11
+
+E # 12 t 2.755706769833 m 5 ce 10 msg 1
+CM id 7 tid 7 eid 7 etid 7 c omnetpp::cMessage n m pe -1
+- INFO: Client hostB sending message 4 trust=0.2
+BS id 7 tid 7 eid 7 etid 7 c TrustSMTPMessage n m m 5 pe 12
+SH sm 5 sg 1 pd 0.001
+ES id 7 tid 7 eid 7 etid 7 c TrustSMTPMessage n m sm 5 sg 1 st 2.755706769833 am 2 ag 1048577 at 2.756706769833 pe 12
+CL id 8 tid 7 eid 8 etid 7 c omnetpp::cMessage n m m 5 pe -1 cid 7
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 2.755706769833 am 5 at 3.355706769833 pe 12
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 2.755706769833 am 5 at 3.355706769833 pe 12
+
+E # 13 t 2.756706769833 m 2 ce 12 msg 7
+- INFO: TrustManager dropping msg 4 from hostB trust=0.2
+DM id 7 tid 7 eid 7 etid 7 c omnetpp::cMessage n m m 2 pe 13
+
+E # 14 t 3.097627004609 m 3 ce 5 msg 0
+CM id 8 tid 8 eid 8 etid 8 c omnetpp::cMessage n m pe -1
+- INFO: Client hostA sending message 1 trust=0.9
+BS id 8 tid 8 eid 8 etid 8 c TrustSMTPMessage n m m 3 pe 14
+SH sm 3 sg 1 pd 0.001
+ES id 8 tid 8 eid 8 etid 8 c TrustSMTPMessage n m sm 3 sg 1 st 3.097627004609 am 2 ag 1048576 at 3.098627004609 pe 14
+CL id 9 tid 8 eid 9 etid 8 c omnetpp::cMessage n m m 3 pe -1 cid 8
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 3 st 3.097627004609 am 3 at 5.097627004609 pe 14
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 3 st 3.097627004609 am 3 at 5.097627004609 pe 14
+
+E # 15 t 3.098627004609 m 2 ce 14 msg 8
+- INFO: TrustManager forwarding msg 1 to hostB via out[1]
+BS id 8 tid 8 eid 8 etid 8 c TrustSMTPMessage n m m 2 pe 15
+SH sm 2 sg 2621441 pd 0.001
+ES id 8 tid 8 eid 8 etid 8 c TrustSMTPMessage n m sm 2 sg 2621441 st 3.098627004609 am 6 ag 0 at 3.099627004609 pe 15
+CL id 9 tid 8 eid 9 etid 8 c omnetpp::cMessage n m m 2 pe -1 cid 8
+
+E # 16 t 3.099627004609 m 6 ce 15 msg 8
+- INFO: Server hostB received msg 1 from hostA size=1024 trust=0.9
+DM id 8 tid 8 eid 8 etid 8 c omnetpp::cMessage n m m 6 pe 16
+
+E # 17 t 3.355706769833 m 5 ce 12 msg 1
+CM id 9 tid 9 eid 9 etid 9 c omnetpp::cMessage n m pe -1
+- INFO: Client hostB sending message 5 trust=0.2
+BS id 9 tid 9 eid 9 etid 9 c TrustSMTPMessage n m m 5 pe 17
+SH sm 5 sg 1 pd 0.001
+ES id 9 tid 9 eid 9 etid 9 c TrustSMTPMessage n m sm 5 sg 1 st 3.355706769833 am 2 ag 1048577 at 3.356706769833 pe 17
+CL id 10 tid 9 eid 10 etid 9 c omnetpp::cMessage n m m 5 pe -1 cid 9
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 3.355706769833 am 5 at 3.955706769833 pe 17
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 3.355706769833 am 5 at 3.955706769833 pe 17
+
+E # 18 t 3.356706769833 m 2 ce 17 msg 9
+- INFO: TrustManager dropping msg 5 from hostB trust=0.2
+DM id 9 tid 9 eid 9 etid 9 c omnetpp::cMessage n m m 2 pe 18
+
+E # 19 t 3.955706769833 m 5 ce 17 msg 1
+CM id 10 tid 10 eid 10 etid 10 c omnetpp::cMessage n m pe -1
+- INFO: Client hostB sending message 6 trust=0.2
+BS id 10 tid 10 eid 10 etid 10 c TrustSMTPMessage n m m 5 pe 19
+SH sm 5 sg 1 pd 0.001
+ES id 10 tid 10 eid 10 etid 10 c TrustSMTPMessage n m sm 5 sg 1 st 3.955706769833 am 2 ag 1048577 at 3.956706769833 pe 19
+CL id 11 tid 10 eid 11 etid 10 c omnetpp::cMessage n m m 5 pe -1 cid 10
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 3.955706769833 am 5 at 4.555706769833 pe 19
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n sendTimer sm 5 st 3.955706769833 am 5 at 4.555706769833 pe 19
+
+E # 20 t 3.956706769833 m 2 ce 19 msg 10
+- INFO: TrustManager dropping msg 6 from hostB trust=0.2
+DM id 10 tid 10 eid 10 etid 10 c omnetpp::cMessage n m m 2 pe 20
+
+SE e 0 c 10 m "The user has finished the simulation -- at t=3.956706769833s, event #20"

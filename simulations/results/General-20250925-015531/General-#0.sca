@@ -1,0 +1,110 @@
+version 3
+run General-0-20250925-01:55:31-8776
+attr configname General
+attr datetime 20250925-01:55:31
+attr datetimef 20250925-015531
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network peyal.TrustSMTPNetwork
+attr processid 8776
+attr repetition 0
+attr replication #0
+attr resultdir results/General-20250925-015531
+attr runnumber 0
+attr seedset 0
+config network peyal.TrustSMTPNetwork
+config ned-path .;../src
+config sim-time-limit 60s
+config user-interface Qtenv
+config result-dir results/General-20250925-015531
+config *.tm.dropThreshold 0.3
+config *.hostA.sendInterval 2s
+config *.hostA.initialTrustScore 0.9
+config *.hostB.sendInterval 0.6s
+config *.hostB.initialTrustScore 0.2
+config record-eventlog true
+config **.vector-recording true
+config **.scalar-recording true
+
+par TrustSMTPNetwork.hostA.out.channel typename "\"peyal.TrustSMTPNetwork.Etherline\""
+par TrustSMTPNetwork.hostA.out.channel disabled false
+attr mutable ""
+par TrustSMTPNetwork.hostA.out.channel delay 0.001s
+attr mutable ""
+attr unit s
+par TrustSMTPNetwork.hostA.out.channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par TrustSMTPNetwork.hostA.out.channel ber 0
+attr mutable ""
+par TrustSMTPNetwork.hostA.out.channel per 0
+attr mutable ""
+par TrustSMTPNetwork.hostB.out.channel typename "\"peyal.TrustSMTPNetwork.Etherline\""
+par TrustSMTPNetwork.hostB.out.channel disabled false
+attr mutable ""
+par TrustSMTPNetwork.hostB.out.channel delay 0.001s
+attr mutable ""
+attr unit s
+par TrustSMTPNetwork.hostB.out.channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par TrustSMTPNetwork.hostB.out.channel ber 0
+attr mutable ""
+par TrustSMTPNetwork.hostB.out.channel per 0
+attr mutable ""
+par TrustSMTPNetwork.tm.out[0].channel typename "\"peyal.TrustSMTPNetwork.Etherline\""
+par TrustSMTPNetwork.tm.out[0].channel disabled false
+attr mutable ""
+par TrustSMTPNetwork.tm.out[0].channel delay 0.001s
+attr mutable ""
+attr unit s
+par TrustSMTPNetwork.tm.out[0].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par TrustSMTPNetwork.tm.out[0].channel ber 0
+attr mutable ""
+par TrustSMTPNetwork.tm.out[0].channel per 0
+attr mutable ""
+par TrustSMTPNetwork.tm.out[1].channel typename "\"peyal.TrustSMTPNetwork.Etherline\""
+par TrustSMTPNetwork.tm.out[1].channel disabled false
+attr mutable ""
+par TrustSMTPNetwork.tm.out[1].channel delay 0.001s
+attr mutable ""
+attr unit s
+par TrustSMTPNetwork.tm.out[1].channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par TrustSMTPNetwork.tm.out[1].channel ber 0
+attr mutable ""
+par TrustSMTPNetwork.tm.out[1].channel per 0
+attr mutable ""
+par TrustSMTPNetwork.tm typename "\"peyal.TrustManager\""
+par TrustSMTPNetwork.tm dropThreshold 0.3
+attr unit ""
+scalar TrustSMTPNetwork.tm tm.numReceived 9
+scalar TrustSMTPNetwork.tm tm.numDropped 7
+scalar TrustSMTPNetwork.tm tm.numForwarded 2
+par TrustSMTPNetwork.hostA typename "\"peyal.SMTPClient\""
+par TrustSMTPNetwork.hostA address "\"hostA\""
+par TrustSMTPNetwork.hostA sendInterval 2s
+attr unit s
+par TrustSMTPNetwork.hostA initialTrustScore 0.9
+par TrustSMTPNetwork.srvA typename "\"peyal.SMTPServer\""
+par TrustSMTPNetwork.srvA address "\"hostA\""
+scalar TrustSMTPNetwork.srvA srv_hostA.numReceived 0
+scalar TrustSMTPNetwork.srvA srv_hostA.bytesReceived 0
+par TrustSMTPNetwork.hostB typename "\"peyal.SMTPClient\""
+par TrustSMTPNetwork.hostB address "\"hostB\""
+par TrustSMTPNetwork.hostB sendInterval 0.6s
+attr unit s
+par TrustSMTPNetwork.hostB initialTrustScore 0.2
+par TrustSMTPNetwork.srvB typename "\"peyal.SMTPServer\""
+par TrustSMTPNetwork.srvB address "\"hostB\""
+scalar TrustSMTPNetwork.srvB srv_hostB.numReceived 2
+scalar TrustSMTPNetwork.srvB srv_hostB.bytesReceived 2048
+par TrustSMTPNetwork typename "\"peyal.TrustSMTPNetwork\""
+

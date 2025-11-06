@@ -1,0 +1,36 @@
+file 1028 1761246880                                            
+version 3
+run Qtenv-0-20251024-01:14:16-11520
+attr configname Qtenv
+attr datetime 20251024-01:14:16
+attr datetimef 20251024-011416
+attr experiment Qtenv
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network peyal.TrustSMTPNetwork
+attr processid 11520
+attr repetition 0
+attr replication #0
+attr resultdir results/Qtenv-20251024-011416
+attr runnumber 0
+attr seedset 0
+config network peyal.TrustSMTPNetwork
+config ned-path .;../src
+config sim-time-limit 60s
+config user-interface Qtenv
+config result-dir results/Qtenv-20251024-011416
+config *.tm.dropThreshold 0.3
+config *.hostA.sendInterval 2s
+config *.hostA.initialTrustScore 0.9
+config *.hostB.sendInterval 0.6s
+config *.hostB.initialTrustScore 0.2
+config record-eventlog true
+config **.vector-recording true
+config **.scalar-recording true
+
+vector 0 TrustSMTPNetwork.srvB srv_hostB_arrivalTimes ETV
+0	955 71 7 16 1.099627004609 3.099627004609 2 1.099627004609 3.099627004609 4.199254009218 10.816867116967
+

@@ -1,0 +1,59 @@
+version 3
+run Qtenv-0-20251025-19:31:56-10216
+attr configname Qtenv
+attr datetime 20251025-19:31:56
+attr datetimef 20251025-193156
+attr experiment Qtenv
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network peyal.TrustSMTPNetwork
+attr processid 10216
+attr repetition 0
+attr replication #0
+attr resultdir results/Qtenv-20251025-193156
+attr runnumber 0
+attr seedset 0
+config network peyal.TrustSMTPNetwork
+config ned-path .;../src
+config sim-time-limit 120s
+config user-interface Qtenv
+config result-dir results/Qtenv-20251025-193156
+config *.tm.dropThreshold 0.3
+config *.hostA.sendInterval 3s
+config *.hostA.initialTrustScore 0.9
+config *.hostB.sendInterval 1.5s
+config *.hostB.initialTrustScore 0.2
+config "*.hostA.@display(\"p" "100,100;i=block/email;is=email\");"
+config "*.hostB.@display(\"p" "500,100;i=block/email;is=email\");"
+config "*.srvA.@display(\"p" "100,300;i=block/server;is=server\");"
+config "*.srvB.@display(\"p" "500,300;i=block/server;is=server\");"
+config "*.tm.@display(\"p" "300,200;i=block/firewall;is=firewall\");"
+config record-eventlog true
+config **.vector-recording true
+config **.scalar-recording true
+config **.sigReceived.record true
+config **.sigDropped.record true
+config **.sigForwarded.record true
+config **.sigCommands.record true
+config **.sigEmails.record true
+
+vector 0 TrustSMTPNetwork.srvA srv_hostA_commandTimes ETV
+vector 1 TrustSMTPNetwork.srvB srv_hostB_commandTimes ETV
+0	4	0.992266924583	0.992266924583
+0	16	1.392266924583	1.392266924583
+0	29	1.749440506913	1.749440506913
+0	43	1.992266924583	1.992266924583
+0	56	2.349440506913	2.349440506913
+0	72	2.692266924583	2.692266924583
+0	84	2.892266924583	2.892266924583
+1	10	1.192266924583	1.192266924583
+1	22	1.592266924583	1.592266924583
+1	37	1.949440506913	1.949440506913
+1	49	2.149440506913	2.149440506913
+1	63	2.492266924583	2.492266924583
+1	78	2.749440506913	2.749440506913
+1	91	3.092266924583	3.092266924583
+

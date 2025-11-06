@@ -1,0 +1,67 @@
+version 3
+run Qtenv-0-20251025-21:17:25-20992
+attr configname Qtenv
+attr datetime 20251025-21:17:25
+attr datetimef 20251025-211725
+attr experiment Qtenv
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network peyal.TrustSMTPNetwork
+attr processid 20992
+attr repetition 0
+attr replication #0
+attr resultdir results/Qtenv-20251025-211725
+attr runnumber 0
+attr seedset 0
+config network peyal.TrustSMTPNetwork
+config ned-path .;../src
+config sim-time-limit 60s
+config user-interface Qtenv
+config result-dir results/Qtenv-20251025-211725
+config *.tm.dropThreshold 0.3
+config *.hostA.sendInterval 4s
+config *.hostA.initialTrustScore 0.9
+config *.hostB.sendInterval 2s
+config *.hostB.initialTrustScore 0.2
+config "*.hostA.@display(\"p" "100,100;i=block/email;is=email\");"
+config "*.hostB.@display(\"p" "500,100;i=block/email;is=email\");"
+config "*.srvA.@display(\"p" "100,300;i=block/server;is=server\");"
+config "*.srvB.@display(\"p" "500,300;i=block/server;is=server\");"
+config "*.tm.@display(\"p" "300,200;i=block/firewall;is=firewall\");"
+config record-eventlog true
+config **.vector-recording true
+config **.scalar-recording true
+
+vector 0 TrustSMTPNetwork.srvA srv_hostA_commandTimes ETV
+vector 1 TrustSMTPNetwork.srvB srv_hostB_commandTimes ETV
+vector 2 TrustSMTPNetwork.srvB srv_hostB_arrivalTimes ETV
+0	4	1.287689232778	1.287689232778
+0	16	1.687689232778	1.687689232778
+0	31	2.287689232778	2.287689232778
+0	44	2.497254009217	2.497254009217
+0	56	2.897254009217	2.897254009217
+0	72	3.297254009217	3.297254009217
+0	85	3.687689232778	3.687689232778
+0	99	4.287689232778	4.287689232778
+0	113	5.487689232778	5.487689232778
+0	125	5.887689232778	5.887689232778
+0	140	6.297254009217	6.297254009217
+0	153	6.697254009217	6.697254009217
+0	172	7.287689232778	7.287689232778
+1	10	1.487689232778	1.487689232778
+1	22	1.887689232778	1.887689232778
+1	37	2.297254009217	2.297254009217
+1	50	2.697254009217	2.697254009217
+1	66	3.287689232778	3.287689232778
+1	78	3.487689232778	3.487689232778
+1	91	3.887689232778	3.887689232778
+1	107	5.287689232778	5.287689232778
+1	119	5.687689232778	5.687689232778
+1	134	6.287689232778	6.287689232778
+1	147	6.497254009217	6.497254009217
+1	159	6.897254009217	6.897254009217
+2	165	7.097254009217	7.097254009217
+

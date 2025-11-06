@@ -1,0 +1,857 @@
+SB ov 1538 ev 2 rid Qtenv-0-20251029-20:41:11-2516
+
+E # 0 t 0 m 1 ce -1 msg -1
+MC id 1 c omnetpp::cModule t peyal.TrustSMTPNetwork n TrustSMTPNetwork cm 1
+MDC id 1 d ""
+MC id 2 c SMTPClient t peyal.SMTPClient pid 1 n hostA
+GC m 2 g 0 n in o 0
+GC m 2 g 3 n out o 1
+MDC id 2 d is=email;p=100,200;i=block/email
+MC id 3 c SMTPServer t peyal.SMTPServer pid 1 n srvA
+MDC id 3 d is=server;p=200,200;i=block/server
+GC m 3 g 1048576 n in i 0 o 0
+GC m 3 g 1048577 n in i 1 o 0
+GC m 3 g 2621440 n out i 0 o 1
+GC m 3 g 2621441 n out i 1 o 1
+MC id 4 c TrustManager t peyal.TrustManager pid 1 n tm
+MDC id 4 d is=firewall;p=300,200;i=block/firewall
+GC m 4 g 1048576 n in i 0 o 0
+GC m 4 g 1048577 n in i 1 o 0
+GC m 4 g 2621440 n out i 0 o 1
+GC m 4 g 2621441 n out i 1 o 1
+MC id 5 c SMTPServer t peyal.SMTPServer pid 1 n srvB
+MDC id 5 d is=server;p=400,200;i=block/server
+GC m 5 g 1048576 n in i 0 o 0
+GC m 5 g 1048577 n in i 1 o 0
+GC m 5 g 2621440 n out i 0 o 1
+GC m 5 g 2621441 n out i 1 o 1
+MC id 6 c SMTPClient t peyal.SMTPClient pid 1 n hostB
+GC m 6 g 0 n in o 0
+GC m 6 g 3 n out o 1
+MDC id 6 d is=email;p=500,200;i=block/email
+CC sm 2 sg 3 dm 3 dg 1048576
+CDC sm 2 sg 3 d ls=blue,3
+CC sm 3 sg 2621440 dm 4 dg 1048576
+CDC sm 3 sg 2621440 d ls=blue,3
+CC sm 4 sg 2621440 dm 5 dg 1048576
+CDC sm 4 sg 2621440 d ls=blue,3
+CC sm 5 sg 2621440 dm 6 dg 0
+CDC sm 5 sg 2621440 d ls=blue,3
+CC sm 6 sg 3 dm 5 dg 1048577
+CDC sm 6 sg 3 d ls=blue,3
+CC sm 5 sg 2621441 dm 4 dg 1048577
+CDC sm 5 sg 2621441 d ls=blue,3
+CC sm 4 sg 2621441 dm 3 dg 1048577
+CDC sm 4 sg 2621441 d ls=blue,3
+CC sm 3 sg 2621441 dm 2 dg 0
+CDC sm 3 sg 2621441 d ls=blue,3
+CMB sm 1 tm 2 m initialize(0)
+CM id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer pe -1
+CM id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer pe -1
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 0 am 2 at 2.195254009217 pe 0
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 0 am 2 at 2.195254009217 pe 0
+CME
+CMB sm 1 tm 3 m initialize(0)
+CME
+CMB sm 1 tm 4 m initialize(0)
+CME
+CMB sm 1 tm 5 m initialize(0)
+CME
+CMB sm 1 tm 6 m initialize(0)
+CM id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer pe -1
+CM id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer pe -1
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 0 am 6 at 1.185689232778 pe 0
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 0 am 6 at 1.185689232778 pe 0
+CME
+
+E # 1 t 1.185689232778 m 6 ce 0 msg 2
+- INFO: Client hostB starting SMTP session to hostA
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.185689232778 am 6 at 1.285689232778 pe 1
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.185689232778 am 6 at 1.285689232778 pe 1
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 1.185689232778 am 6 at 3.185689232778 pe 1
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 1.185689232778 am 6 at 3.185689232778 pe 1
+
+E # 2 t 1.285689232778 m 6 ce 1 msg 3
+- INFO: Client hostB executing step: HELLO
+CM id 4 tid 4 eid 4 etid 4 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: HELLO
+BS id 4 tid 4 eid 4 etid 4 c peyal::SMTPCommand n HELLO m 6 pe 2
+SH sm 6 sg 3 pd 0.001
+ES id 4 tid 4 eid 4 etid 4 c peyal::SMTPCommand n HELLO sm 6 sg 3 st 1.285689232778 am 5 ag 1048577 at 1.286689232778 pe 2
+CL id 5 tid 4 eid 5 etid 4 c omnetpp::cMessage n HELLO m 6 pe -1 cid 4
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.285689232778 am 6 at 1.785689232778 pe 2
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.285689232778 am 6 at 1.785689232778 pe 2
+
+E # 3 t 1.286689232778 m 5 ce 2 msg 4
+- INFO: Server hostB received: HELLO from hostB
+CM id 5 tid 5 eid 5 etid 5 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 5 tid 5 eid 5 etid 5 c peyal::SMTPResponse n "250 OK" m 5 pe 3
+SH sm 5 sg 2621440 pd 0.001
+ES id 5 tid 5 eid 5 etid 5 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 1.286689232778 am 6 ag 0 at 1.287689232778 pe 3
+CL id 6 tid 5 eid 6 etid 5 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 5
+DM id 4 tid 4 eid 4 etid 4 c omnetpp::cMessage n HELLO m 5 pe 3
+
+E # 4 t 1.287689232778 m 6 ce 3 msg 5
+- INFO: Client hostB received response: 250 Hello Hello from hostB
+DM id 5 tid 5 eid 5 etid 5 c omnetpp::cMessage n "250 OK" m 6 pe 4
+
+E # 5 t 1.785689232778 m 6 ce 2 msg 3
+- INFO: Client hostB executing step: EMAIL
+CM id 6 tid 6 eid 6 etid 6 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending email (trust=0.2)
+BS id 6 tid 6 eid 6 etid 6 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 6 pe 5
+SH sm 6 sg 3 pd 0.001
+ES id 6 tid 6 eid 6 etid 6 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 6 sg 3 st 1.785689232778 am 5 ag 1048577 at 1.786689232778 pe 5
+CL id 7 tid 6 eid 7 etid 6 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 6 pe -1 cid 6
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.785689232778 am 6 at 2.285689232778 pe 5
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.785689232778 am 6 at 2.285689232778 pe 5
+
+E # 6 t 1.786689232778 m 5 ce 5 msg 6
+- INFO: Server hostB received email from hostB@example.com trust=0.2 via in[1]
+CM id 7 tid 7 eid 7 etid 7 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 7 tid 7 eid 7 etid 7 c peyal::SMTPResponse n "250 OK" m 5 pe 6
+SH sm 5 sg 2621440 pd 0.001
+ES id 7 tid 7 eid 7 etid 7 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 1.786689232778 am 6 ag 0 at 1.787689232778 pe 6
+CL id 8 tid 7 eid 8 etid 7 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 7
+CL id 8 tid 6 eid 8 etid 6 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 6
+- INFO: Server hostB relaying email to TM via out[1]
+BS id 8 tid 6 eid 8 etid 6 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 5 pe 6
+SH sm 5 sg 2621441 pd 0.001
+ES id 8 tid 6 eid 8 etid 6 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 5 sg 2621441 st 1.786689232778 am 4 ag 1048577 at 1.787689232778 pe 6
+CL id 9 tid 6 eid 9 etid 6 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 8
+DM id 6 tid 6 eid 6 etid 6 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe 6
+
+E # 7 t 1.787689232778 m 6 ce 6 msg 7
+- INFO: Client hostB received response: 250 Email received
+DM id 7 tid 7 eid 7 etid 7 c omnetpp::cMessage n "250 OK" m 6 pe 7
+
+E # 8 t 1.787689232778 m 4 ce 6 msg 8
+- INFO: TrustManager received email from hostB@example.com trust=0.2
+- INFO: TrustManager: DROPPING email (trust=0.2 < 0.3)
+DM id 8 tid 6 eid 8 etid 6 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 4 pe 8
+
+E # 9 t 2.195254009217 m 2 ce 0 msg 0
+- INFO: Client hostA starting SMTP session to hostB
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 2.195254009217 am 2 at 2.295254009217 pe 9
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 2.195254009217 am 2 at 2.295254009217 pe 9
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 2.195254009217 am 2 at 6.195254009217 pe 9
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 2.195254009217 am 2 at 6.195254009217 pe 9
+
+E # 10 t 2.285689232778 m 6 ce 5 msg 3
+- INFO: Client hostB executing step: QUIT
+CM id 9 tid 9 eid 9 etid 9 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: QUIT
+BS id 9 tid 9 eid 9 etid 9 c peyal::SMTPCommand n QUIT m 6 pe 10
+SH sm 6 sg 3 pd 0.001
+ES id 9 tid 9 eid 9 etid 9 c peyal::SMTPCommand n QUIT sm 6 sg 3 st 2.285689232778 am 5 ag 1048577 at 2.286689232778 pe 10
+CL id 10 tid 9 eid 10 etid 9 c omnetpp::cMessage n QUIT m 6 pe -1 cid 9
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 2.285689232778 am 6 at 2.785689232778 pe 10
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 2.285689232778 am 6 at 2.785689232778 pe 10
+
+E # 11 t 2.286689232778 m 5 ce 10 msg 9
+- INFO: Server hostB received: QUIT from hostB
+CM id 10 tid 10 eid 10 etid 10 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 221 BYE via out[0]
+BS id 10 tid 10 eid 10 etid 10 c peyal::SMTPResponse n "221 BYE" m 5 pe 11
+SH sm 5 sg 2621440 pd 0.001
+ES id 10 tid 10 eid 10 etid 10 c peyal::SMTPResponse n "221 BYE" sm 5 sg 2621440 st 2.286689232778 am 6 ag 0 at 2.287689232778 pe 11
+CL id 11 tid 10 eid 11 etid 10 c omnetpp::cMessage n "221 BYE" m 5 pe -1 cid 10
+DM id 9 tid 9 eid 9 etid 9 c omnetpp::cMessage n QUIT m 5 pe 11
+
+E # 12 t 2.287689232778 m 6 ce 11 msg 10
+- INFO: Client hostB received response: 221 Goodbye
+DM id 10 tid 10 eid 10 etid 10 c omnetpp::cMessage n "221 BYE" m 6 pe 12
+
+E # 13 t 2.295254009217 m 2 ce 9 msg 1
+- INFO: Client hostA executing step: HELLO
+CM id 11 tid 11 eid 11 etid 11 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending: HELLO
+BS id 11 tid 11 eid 11 etid 11 c peyal::SMTPCommand n HELLO m 2 pe 13
+SH sm 2 sg 3 pd 0.001
+ES id 11 tid 11 eid 11 etid 11 c peyal::SMTPCommand n HELLO sm 2 sg 3 st 2.295254009217 am 3 ag 1048576 at 2.296254009217 pe 13
+CL id 12 tid 11 eid 12 etid 11 c omnetpp::cMessage n HELLO m 2 pe -1 cid 11
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 2.295254009217 am 2 at 2.795254009217 pe 13
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 2.295254009217 am 2 at 2.795254009217 pe 13
+
+E # 14 t 2.296254009217 m 3 ce 13 msg 11
+- INFO: Server hostA received: HELLO from hostA
+CM id 12 tid 12 eid 12 etid 12 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 250 OK via out[1]
+BS id 12 tid 12 eid 12 etid 12 c peyal::SMTPResponse n "250 OK" m 3 pe 14
+SH sm 3 sg 2621441 pd 0.001
+ES id 12 tid 12 eid 12 etid 12 c peyal::SMTPResponse n "250 OK" sm 3 sg 2621441 st 2.296254009217 am 2 ag 0 at 2.297254009217 pe 14
+CL id 13 tid 12 eid 13 etid 12 c omnetpp::cMessage n "250 OK" m 3 pe -1 cid 12
+DM id 11 tid 11 eid 11 etid 11 c omnetpp::cMessage n HELLO m 3 pe 14
+
+E # 15 t 2.297254009217 m 2 ce 14 msg 12
+- INFO: Client hostA received response: 250 Hello Hello from hostA
+DM id 12 tid 12 eid 12 etid 12 c omnetpp::cMessage n "250 OK" m 2 pe 15
+
+E # 16 t 2.785689232778 m 6 ce 10 msg 3
+
+E # 17 t 2.795254009217 m 2 ce 13 msg 1
+- INFO: Client hostA executing step: EMAIL
+CM id 13 tid 13 eid 13 etid 13 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending email (trust=0.9)
+BS id 13 tid 13 eid 13 etid 13 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" m 2 pe 17
+SH sm 2 sg 3 pd 0.001
+ES id 13 tid 13 eid 13 etid 13 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" sm 2 sg 3 st 2.795254009217 am 3 ag 1048576 at 2.796254009217 pe 17
+CL id 14 tid 13 eid 14 etid 13 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 2 pe -1 cid 13
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 2.795254009217 am 2 at 3.295254009217 pe 17
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 2.795254009217 am 2 at 3.295254009217 pe 17
+
+E # 18 t 2.796254009217 m 3 ce 17 msg 13
+- INFO: Server hostA received email from hostA@example.com trust=0.9 via in[0]
+CM id 14 tid 14 eid 14 etid 14 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 250 OK via out[1]
+BS id 14 tid 14 eid 14 etid 14 c peyal::SMTPResponse n "250 OK" m 3 pe 18
+SH sm 3 sg 2621441 pd 0.001
+ES id 14 tid 14 eid 14 etid 14 c peyal::SMTPResponse n "250 OK" sm 3 sg 2621441 st 2.796254009217 am 2 ag 0 at 2.797254009217 pe 18
+CL id 15 tid 14 eid 15 etid 14 c omnetpp::cMessage n "250 OK" m 3 pe -1 cid 14
+CL id 15 tid 13 eid 15 etid 13 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe -1 cid 13
+- INFO: Server hostA relaying email to TM via out[0]
+BS id 15 tid 13 eid 15 etid 13 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" m 3 pe 18
+SH sm 3 sg 2621440 pd 0.001
+ES id 15 tid 13 eid 15 etid 13 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" sm 3 sg 2621440 st 2.796254009217 am 4 ag 1048576 at 2.797254009217 pe 18
+CL id 16 tid 13 eid 16 etid 13 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe -1 cid 15
+DM id 13 tid 13 eid 13 etid 13 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe 18
+
+E # 19 t 2.797254009217 m 2 ce 18 msg 14
+- INFO: Client hostA received response: 250 Email received
+DM id 14 tid 14 eid 14 etid 14 c omnetpp::cMessage n "250 OK" m 2 pe 19
+
+E # 20 t 2.797254009217 m 4 ce 18 msg 15
+- INFO: TrustManager received email from hostA@example.com trust=0.9
+- INFO: TrustManager: FORWARDING email (trust=0.9 >= 0.3)
+- INFO: TrustManager relaying from in[0] to out[0]
+BS id 15 tid 13 eid 15 etid 13 c peyal::SMTPData n EMAIL m 4 pe 20
+SH sm 4 sg 2621440 pd 0.001
+ES id 15 tid 13 eid 15 etid 13 c peyal::SMTPData n EMAIL sm 4 sg 2621440 st 2.797254009217 am 5 ag 1048576 at 2.798254009217 pe 20
+CL id 16 tid 13 eid 16 etid 13 c omnetpp::cMessage n EMAIL m 4 pe -1 cid 15
+
+E # 21 t 2.798254009217 m 5 ce 20 msg 15
+- INFO: Server hostB received email from hostA@example.com trust=0.9 via in[0]
+CM id 16 tid 16 eid 16 etid 16 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[1]
+BS id 16 tid 16 eid 16 etid 16 c peyal::SMTPResponse n "250 OK" m 5 pe 21
+SH sm 5 sg 2621441 pd 0.001
+ES id 16 tid 16 eid 16 etid 16 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621441 st 2.798254009217 am 4 ag 1048577 at 2.799254009217 pe 21
+CL id 17 tid 16 eid 17 etid 16 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 16
+CL id 17 tid 13 eid 17 etid 13 c omnetpp::cMessage n EMAIL m 5 pe -1 cid 15
+- INFO: Server hostB relaying email to TM via out[0]
+BS id 17 tid 13 eid 17 etid 13 c peyal::SMTPData n EMAIL m 5 pe 21
+SH sm 5 sg 2621440 pd 0.001
+ES id 17 tid 13 eid 17 etid 13 c peyal::SMTPData n EMAIL sm 5 sg 2621440 st 2.798254009217 am 6 ag 0 at 2.799254009217 pe 21
+CL id 18 tid 13 eid 18 etid 13 c omnetpp::cMessage n EMAIL m 5 pe -1 cid 17
+DM id 15 tid 13 eid 15 etid 13 c omnetpp::cMessage n EMAIL m 5 pe 21
+
+E # 22 t 2.799254009217 m 4 ce 21 msg 16
+- INFO: TrustManager forwarding response via out[1]: 250 Email received
+BS id 16 tid 16 eid 16 etid 16 c peyal::SMTPResponse n "250 OK" m 4 pe 22
+SH sm 4 sg 2621441 pd 0.001
+ES id 16 tid 16 eid 16 etid 16 c peyal::SMTPResponse n "250 OK" sm 4 sg 2621441 st 2.799254009217 am 3 ag 1048577 at 2.800254009217 pe 22
+CL id 18 tid 16 eid 18 etid 16 c omnetpp::cMessage n "250 OK" m 4 pe -1 cid 16
+
+E # 23 t 2.799254009217 m 6 ce 21 msg 17
+DM id 17 tid 13 eid 17 etid 13 c omnetpp::cMessage n EMAIL m 6 pe 23
+
+E # 24 t 2.800254009217 m 3 ce 22 msg 16
+DM id 16 tid 16 eid 16 etid 16 c omnetpp::cMessage n "250 OK" m 3 pe 24
+
+E # 25 t 3.185689232778 m 6 ce 1 msg 2
+- INFO: Client hostB starting SMTP session to hostA
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 3.185689232778 am 6 at 3.285689232778 pe 25
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 3.185689232778 am 6 at 3.285689232778 pe 25
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 3.185689232778 am 6 at 5.185689232778 pe 25
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 3.185689232778 am 6 at 5.185689232778 pe 25
+
+E # 26 t 3.285689232778 m 6 ce 25 msg 3
+- INFO: Client hostB executing step: HELLO
+CM id 18 tid 18 eid 18 etid 18 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: HELLO
+BS id 18 tid 18 eid 18 etid 18 c peyal::SMTPCommand n HELLO m 6 pe 26
+SH sm 6 sg 3 pd 0.001
+ES id 18 tid 18 eid 18 etid 18 c peyal::SMTPCommand n HELLO sm 6 sg 3 st 3.285689232778 am 5 ag 1048577 at 3.286689232778 pe 26
+CL id 19 tid 18 eid 19 etid 18 c omnetpp::cMessage n HELLO m 6 pe -1 cid 18
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 3.285689232778 am 6 at 3.785689232778 pe 26
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 3.285689232778 am 6 at 3.785689232778 pe 26
+
+E # 27 t 3.286689232778 m 5 ce 26 msg 18
+- INFO: Server hostB received: HELLO from hostB
+CM id 19 tid 19 eid 19 etid 19 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 19 tid 19 eid 19 etid 19 c peyal::SMTPResponse n "250 OK" m 5 pe 27
+SH sm 5 sg 2621440 pd 0.001
+ES id 19 tid 19 eid 19 etid 19 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 3.286689232778 am 6 ag 0 at 3.287689232778 pe 27
+CL id 20 tid 19 eid 20 etid 19 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 19
+DM id 18 tid 18 eid 18 etid 18 c omnetpp::cMessage n HELLO m 5 pe 27
+
+E # 28 t 3.287689232778 m 6 ce 27 msg 19
+- INFO: Client hostB received response: 250 Hello Hello from hostB
+DM id 19 tid 19 eid 19 etid 19 c omnetpp::cMessage n "250 OK" m 6 pe 28
+
+E # 29 t 3.295254009217 m 2 ce 17 msg 1
+- INFO: Client hostA executing step: QUIT
+CM id 20 tid 20 eid 20 etid 20 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending: QUIT
+BS id 20 tid 20 eid 20 etid 20 c peyal::SMTPCommand n QUIT m 2 pe 29
+SH sm 2 sg 3 pd 0.001
+ES id 20 tid 20 eid 20 etid 20 c peyal::SMTPCommand n QUIT sm 2 sg 3 st 3.295254009217 am 3 ag 1048576 at 3.296254009217 pe 29
+CL id 21 tid 20 eid 21 etid 20 c omnetpp::cMessage n QUIT m 2 pe -1 cid 20
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 3.295254009217 am 2 at 3.795254009217 pe 29
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 3.295254009217 am 2 at 3.795254009217 pe 29
+
+E # 30 t 3.296254009217 m 3 ce 29 msg 20
+- INFO: Server hostA received: QUIT from hostA
+CM id 21 tid 21 eid 21 etid 21 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 221 BYE via out[1]
+BS id 21 tid 21 eid 21 etid 21 c peyal::SMTPResponse n "221 BYE" m 3 pe 30
+SH sm 3 sg 2621441 pd 0.001
+ES id 21 tid 21 eid 21 etid 21 c peyal::SMTPResponse n "221 BYE" sm 3 sg 2621441 st 3.296254009217 am 2 ag 0 at 3.297254009217 pe 30
+CL id 22 tid 21 eid 22 etid 21 c omnetpp::cMessage n "221 BYE" m 3 pe -1 cid 21
+DM id 20 tid 20 eid 20 etid 20 c omnetpp::cMessage n QUIT m 3 pe 30
+
+E # 31 t 3.297254009217 m 2 ce 30 msg 21
+- INFO: Client hostA received response: 221 Goodbye
+DM id 21 tid 21 eid 21 etid 21 c omnetpp::cMessage n "221 BYE" m 2 pe 31
+
+E # 32 t 3.785689232778 m 6 ce 26 msg 3
+- INFO: Client hostB executing step: EMAIL
+CM id 22 tid 22 eid 22 etid 22 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending email (trust=0.2)
+BS id 22 tid 22 eid 22 etid 22 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 6 pe 32
+SH sm 6 sg 3 pd 0.001
+ES id 22 tid 22 eid 22 etid 22 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 6 sg 3 st 3.785689232778 am 5 ag 1048577 at 3.786689232778 pe 32
+CL id 23 tid 22 eid 23 etid 22 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 6 pe -1 cid 22
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 3.785689232778 am 6 at 4.285689232778 pe 32
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 3.785689232778 am 6 at 4.285689232778 pe 32
+
+E # 33 t 3.786689232778 m 5 ce 32 msg 22
+- INFO: Server hostB received email from hostB@example.com trust=0.2 via in[1]
+CM id 23 tid 23 eid 23 etid 23 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 23 tid 23 eid 23 etid 23 c peyal::SMTPResponse n "250 OK" m 5 pe 33
+SH sm 5 sg 2621440 pd 0.001
+ES id 23 tid 23 eid 23 etid 23 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 3.786689232778 am 6 ag 0 at 3.787689232778 pe 33
+CL id 24 tid 23 eid 24 etid 23 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 23
+CL id 24 tid 22 eid 24 etid 22 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 22
+- INFO: Server hostB relaying email to TM via out[1]
+BS id 24 tid 22 eid 24 etid 22 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 5 pe 33
+SH sm 5 sg 2621441 pd 0.001
+ES id 24 tid 22 eid 24 etid 22 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 5 sg 2621441 st 3.786689232778 am 4 ag 1048577 at 3.787689232778 pe 33
+CL id 25 tid 22 eid 25 etid 22 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 24
+DM id 22 tid 22 eid 22 etid 22 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe 33
+
+E # 34 t 3.787689232778 m 6 ce 33 msg 23
+- INFO: Client hostB received response: 250 Email received
+DM id 23 tid 23 eid 23 etid 23 c omnetpp::cMessage n "250 OK" m 6 pe 34
+
+E # 35 t 3.787689232778 m 4 ce 33 msg 24
+- INFO: TrustManager received email from hostB@example.com trust=0.2
+- INFO: TrustManager: DROPPING email (trust=0.2 < 0.3)
+DM id 24 tid 22 eid 24 etid 22 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 4 pe 35
+
+E # 36 t 3.795254009217 m 2 ce 29 msg 1
+
+E # 37 t 4.285689232778 m 6 ce 32 msg 3
+- INFO: Client hostB executing step: QUIT
+CM id 25 tid 25 eid 25 etid 25 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: QUIT
+BS id 25 tid 25 eid 25 etid 25 c peyal::SMTPCommand n QUIT m 6 pe 37
+SH sm 6 sg 3 pd 0.001
+ES id 25 tid 25 eid 25 etid 25 c peyal::SMTPCommand n QUIT sm 6 sg 3 st 4.285689232778 am 5 ag 1048577 at 4.286689232778 pe 37
+CL id 26 tid 25 eid 26 etid 25 c omnetpp::cMessage n QUIT m 6 pe -1 cid 25
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 4.285689232778 am 6 at 4.785689232778 pe 37
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 4.285689232778 am 6 at 4.785689232778 pe 37
+
+E # 38 t 4.286689232778 m 5 ce 37 msg 25
+- INFO: Server hostB received: QUIT from hostB
+CM id 26 tid 26 eid 26 etid 26 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 221 BYE via out[0]
+BS id 26 tid 26 eid 26 etid 26 c peyal::SMTPResponse n "221 BYE" m 5 pe 38
+SH sm 5 sg 2621440 pd 0.001
+ES id 26 tid 26 eid 26 etid 26 c peyal::SMTPResponse n "221 BYE" sm 5 sg 2621440 st 4.286689232778 am 6 ag 0 at 4.287689232778 pe 38
+CL id 27 tid 26 eid 27 etid 26 c omnetpp::cMessage n "221 BYE" m 5 pe -1 cid 26
+DM id 25 tid 25 eid 25 etid 25 c omnetpp::cMessage n QUIT m 5 pe 38
+
+E # 39 t 4.287689232778 m 6 ce 38 msg 26
+- INFO: Client hostB received response: 221 Goodbye
+DM id 26 tid 26 eid 26 etid 26 c omnetpp::cMessage n "221 BYE" m 6 pe 39
+
+E # 40 t 4.785689232778 m 6 ce 37 msg 3
+
+E # 41 t 5.185689232778 m 6 ce 25 msg 2
+- INFO: Client hostB starting SMTP session to hostA
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 5.185689232778 am 6 at 5.285689232778 pe 41
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 5.185689232778 am 6 at 5.285689232778 pe 41
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 5.185689232778 am 6 at 7.185689232778 pe 41
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 5.185689232778 am 6 at 7.185689232778 pe 41
+
+E # 42 t 5.285689232778 m 6 ce 41 msg 3
+- INFO: Client hostB executing step: HELLO
+CM id 27 tid 27 eid 27 etid 27 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: HELLO
+BS id 27 tid 27 eid 27 etid 27 c peyal::SMTPCommand n HELLO m 6 pe 42
+SH sm 6 sg 3 pd 0.001
+ES id 27 tid 27 eid 27 etid 27 c peyal::SMTPCommand n HELLO sm 6 sg 3 st 5.285689232778 am 5 ag 1048577 at 5.286689232778 pe 42
+CL id 28 tid 27 eid 28 etid 27 c omnetpp::cMessage n HELLO m 6 pe -1 cid 27
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 5.285689232778 am 6 at 5.785689232778 pe 42
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 5.285689232778 am 6 at 5.785689232778 pe 42
+
+E # 43 t 5.286689232778 m 5 ce 42 msg 27
+- INFO: Server hostB received: HELLO from hostB
+CM id 28 tid 28 eid 28 etid 28 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 28 tid 28 eid 28 etid 28 c peyal::SMTPResponse n "250 OK" m 5 pe 43
+SH sm 5 sg 2621440 pd 0.001
+ES id 28 tid 28 eid 28 etid 28 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 5.286689232778 am 6 ag 0 at 5.287689232778 pe 43
+CL id 29 tid 28 eid 29 etid 28 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 28
+DM id 27 tid 27 eid 27 etid 27 c omnetpp::cMessage n HELLO m 5 pe 43
+
+E # 44 t 5.287689232778 m 6 ce 43 msg 28
+- INFO: Client hostB received response: 250 Hello Hello from hostB
+DM id 28 tid 28 eid 28 etid 28 c omnetpp::cMessage n "250 OK" m 6 pe 44
+
+E # 45 t 5.785689232778 m 6 ce 42 msg 3
+- INFO: Client hostB executing step: EMAIL
+CM id 29 tid 29 eid 29 etid 29 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending email (trust=0.2)
+BS id 29 tid 29 eid 29 etid 29 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 6 pe 45
+SH sm 6 sg 3 pd 0.001
+ES id 29 tid 29 eid 29 etid 29 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 6 sg 3 st 5.785689232778 am 5 ag 1048577 at 5.786689232778 pe 45
+CL id 30 tid 29 eid 30 etid 29 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 6 pe -1 cid 29
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 5.785689232778 am 6 at 6.285689232778 pe 45
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 5.785689232778 am 6 at 6.285689232778 pe 45
+
+E # 46 t 5.786689232778 m 5 ce 45 msg 29
+- INFO: Server hostB received email from hostB@example.com trust=0.2 via in[1]
+CM id 30 tid 30 eid 30 etid 30 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 30 tid 30 eid 30 etid 30 c peyal::SMTPResponse n "250 OK" m 5 pe 46
+SH sm 5 sg 2621440 pd 0.001
+ES id 30 tid 30 eid 30 etid 30 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 5.786689232778 am 6 ag 0 at 5.787689232778 pe 46
+CL id 31 tid 30 eid 31 etid 30 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 30
+CL id 31 tid 29 eid 31 etid 29 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 29
+- INFO: Server hostB relaying email to TM via out[1]
+BS id 31 tid 29 eid 31 etid 29 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 5 pe 46
+SH sm 5 sg 2621441 pd 0.001
+ES id 31 tid 29 eid 31 etid 29 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 5 sg 2621441 st 5.786689232778 am 4 ag 1048577 at 5.787689232778 pe 46
+CL id 32 tid 29 eid 32 etid 29 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 31
+DM id 29 tid 29 eid 29 etid 29 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe 46
+
+E # 47 t 5.787689232778 m 6 ce 46 msg 30
+- INFO: Client hostB received response: 250 Email received
+DM id 30 tid 30 eid 30 etid 30 c omnetpp::cMessage n "250 OK" m 6 pe 47
+
+E # 48 t 5.787689232778 m 4 ce 46 msg 31
+- INFO: TrustManager received email from hostB@example.com trust=0.2
+- INFO: TrustManager: DROPPING email (trust=0.2 < 0.3)
+DM id 31 tid 29 eid 31 etid 29 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 4 pe 48
+
+E # 49 t 6.195254009217 m 2 ce 9 msg 0
+- INFO: Client hostA starting SMTP session to hostB
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 6.195254009217 am 2 at 6.295254009217 pe 49
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 6.195254009217 am 2 at 6.295254009217 pe 49
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 6.195254009217 am 2 at 10.195254009217 pe 49
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 6.195254009217 am 2 at 10.195254009217 pe 49
+
+E # 50 t 6.285689232778 m 6 ce 45 msg 3
+- INFO: Client hostB executing step: QUIT
+CM id 32 tid 32 eid 32 etid 32 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: QUIT
+BS id 32 tid 32 eid 32 etid 32 c peyal::SMTPCommand n QUIT m 6 pe 50
+SH sm 6 sg 3 pd 0.001
+ES id 32 tid 32 eid 32 etid 32 c peyal::SMTPCommand n QUIT sm 6 sg 3 st 6.285689232778 am 5 ag 1048577 at 6.286689232778 pe 50
+CL id 33 tid 32 eid 33 etid 32 c omnetpp::cMessage n QUIT m 6 pe -1 cid 32
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 6.285689232778 am 6 at 6.785689232778 pe 50
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 6.285689232778 am 6 at 6.785689232778 pe 50
+
+E # 51 t 6.286689232778 m 5 ce 50 msg 32
+- INFO: Server hostB received: QUIT from hostB
+CM id 33 tid 33 eid 33 etid 33 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 221 BYE via out[0]
+BS id 33 tid 33 eid 33 etid 33 c peyal::SMTPResponse n "221 BYE" m 5 pe 51
+SH sm 5 sg 2621440 pd 0.001
+ES id 33 tid 33 eid 33 etid 33 c peyal::SMTPResponse n "221 BYE" sm 5 sg 2621440 st 6.286689232778 am 6 ag 0 at 6.287689232778 pe 51
+CL id 34 tid 33 eid 34 etid 33 c omnetpp::cMessage n "221 BYE" m 5 pe -1 cid 33
+DM id 32 tid 32 eid 32 etid 32 c omnetpp::cMessage n QUIT m 5 pe 51
+
+E # 52 t 6.287689232778 m 6 ce 51 msg 33
+- INFO: Client hostB received response: 221 Goodbye
+DM id 33 tid 33 eid 33 etid 33 c omnetpp::cMessage n "221 BYE" m 6 pe 52
+
+E # 53 t 6.295254009217 m 2 ce 49 msg 1
+- INFO: Client hostA executing step: HELLO
+CM id 34 tid 34 eid 34 etid 34 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending: HELLO
+BS id 34 tid 34 eid 34 etid 34 c peyal::SMTPCommand n HELLO m 2 pe 53
+SH sm 2 sg 3 pd 0.001
+ES id 34 tid 34 eid 34 etid 34 c peyal::SMTPCommand n HELLO sm 2 sg 3 st 6.295254009217 am 3 ag 1048576 at 6.296254009217 pe 53
+CL id 35 tid 34 eid 35 etid 34 c omnetpp::cMessage n HELLO m 2 pe -1 cid 34
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 6.295254009217 am 2 at 6.795254009217 pe 53
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 6.295254009217 am 2 at 6.795254009217 pe 53
+
+E # 54 t 6.296254009217 m 3 ce 53 msg 34
+- INFO: Server hostA received: HELLO from hostA
+CM id 35 tid 35 eid 35 etid 35 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 250 OK via out[1]
+BS id 35 tid 35 eid 35 etid 35 c peyal::SMTPResponse n "250 OK" m 3 pe 54
+SH sm 3 sg 2621441 pd 0.001
+ES id 35 tid 35 eid 35 etid 35 c peyal::SMTPResponse n "250 OK" sm 3 sg 2621441 st 6.296254009217 am 2 ag 0 at 6.297254009217 pe 54
+CL id 36 tid 35 eid 36 etid 35 c omnetpp::cMessage n "250 OK" m 3 pe -1 cid 35
+DM id 34 tid 34 eid 34 etid 34 c omnetpp::cMessage n HELLO m 3 pe 54
+
+E # 55 t 6.297254009217 m 2 ce 54 msg 35
+- INFO: Client hostA received response: 250 Hello Hello from hostA
+DM id 35 tid 35 eid 35 etid 35 c omnetpp::cMessage n "250 OK" m 2 pe 55
+
+E # 56 t 6.785689232778 m 6 ce 50 msg 3
+
+E # 57 t 6.795254009217 m 2 ce 53 msg 1
+- INFO: Client hostA executing step: EMAIL
+CM id 36 tid 36 eid 36 etid 36 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending email (trust=0.9)
+BS id 36 tid 36 eid 36 etid 36 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" m 2 pe 57
+SH sm 2 sg 3 pd 0.001
+ES id 36 tid 36 eid 36 etid 36 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" sm 2 sg 3 st 6.795254009217 am 3 ag 1048576 at 6.796254009217 pe 57
+CL id 37 tid 36 eid 37 etid 36 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 2 pe -1 cid 36
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 6.795254009217 am 2 at 7.295254009217 pe 57
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 6.795254009217 am 2 at 7.295254009217 pe 57
+
+E # 58 t 6.796254009217 m 3 ce 57 msg 36
+- INFO: Server hostA received email from hostA@example.com trust=0.9 via in[0]
+CM id 37 tid 37 eid 37 etid 37 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 250 OK via out[1]
+BS id 37 tid 37 eid 37 etid 37 c peyal::SMTPResponse n "250 OK" m 3 pe 58
+SH sm 3 sg 2621441 pd 0.001
+ES id 37 tid 37 eid 37 etid 37 c peyal::SMTPResponse n "250 OK" sm 3 sg 2621441 st 6.796254009217 am 2 ag 0 at 6.797254009217 pe 58
+CL id 38 tid 37 eid 38 etid 37 c omnetpp::cMessage n "250 OK" m 3 pe -1 cid 37
+CL id 38 tid 36 eid 38 etid 36 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe -1 cid 36
+- INFO: Server hostA relaying email to TM via out[0]
+BS id 38 tid 36 eid 38 etid 36 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" m 3 pe 58
+SH sm 3 sg 2621440 pd 0.001
+ES id 38 tid 36 eid 38 etid 36 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" sm 3 sg 2621440 st 6.796254009217 am 4 ag 1048576 at 6.797254009217 pe 58
+CL id 39 tid 36 eid 39 etid 36 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe -1 cid 38
+DM id 36 tid 36 eid 36 etid 36 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe 58
+
+E # 59 t 6.797254009217 m 2 ce 58 msg 37
+- INFO: Client hostA received response: 250 Email received
+DM id 37 tid 37 eid 37 etid 37 c omnetpp::cMessage n "250 OK" m 2 pe 59
+
+E # 60 t 6.797254009217 m 4 ce 58 msg 38
+- INFO: TrustManager received email from hostA@example.com trust=0.9
+- INFO: TrustManager: FORWARDING email (trust=0.9 >= 0.3)
+- INFO: TrustManager relaying from in[0] to out[0]
+BS id 38 tid 36 eid 38 etid 36 c peyal::SMTPData n EMAIL m 4 pe 60
+SH sm 4 sg 2621440 pd 0.001
+ES id 38 tid 36 eid 38 etid 36 c peyal::SMTPData n EMAIL sm 4 sg 2621440 st 6.797254009217 am 5 ag 1048576 at 6.798254009217 pe 60
+CL id 39 tid 36 eid 39 etid 36 c omnetpp::cMessage n EMAIL m 4 pe -1 cid 38
+
+E # 61 t 6.798254009217 m 5 ce 60 msg 38
+- INFO: Server hostB received email from hostA@example.com trust=0.9 via in[0]
+CM id 39 tid 39 eid 39 etid 39 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[1]
+BS id 39 tid 39 eid 39 etid 39 c peyal::SMTPResponse n "250 OK" m 5 pe 61
+SH sm 5 sg 2621441 pd 0.001
+ES id 39 tid 39 eid 39 etid 39 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621441 st 6.798254009217 am 4 ag 1048577 at 6.799254009217 pe 61
+CL id 40 tid 39 eid 40 etid 39 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 39
+CL id 40 tid 36 eid 40 etid 36 c omnetpp::cMessage n EMAIL m 5 pe -1 cid 38
+- INFO: Server hostB relaying email to TM via out[0]
+BS id 40 tid 36 eid 40 etid 36 c peyal::SMTPData n EMAIL m 5 pe 61
+SH sm 5 sg 2621440 pd 0.001
+ES id 40 tid 36 eid 40 etid 36 c peyal::SMTPData n EMAIL sm 5 sg 2621440 st 6.798254009217 am 6 ag 0 at 6.799254009217 pe 61
+CL id 41 tid 36 eid 41 etid 36 c omnetpp::cMessage n EMAIL m 5 pe -1 cid 40
+DM id 38 tid 36 eid 38 etid 36 c omnetpp::cMessage n EMAIL m 5 pe 61
+
+E # 62 t 6.799254009217 m 4 ce 61 msg 39
+- INFO: TrustManager forwarding response via out[1]: 250 Email received
+BS id 39 tid 39 eid 39 etid 39 c peyal::SMTPResponse n "250 OK" m 4 pe 62
+SH sm 4 sg 2621441 pd 0.001
+ES id 39 tid 39 eid 39 etid 39 c peyal::SMTPResponse n "250 OK" sm 4 sg 2621441 st 6.799254009217 am 3 ag 1048577 at 6.800254009217 pe 62
+CL id 41 tid 39 eid 41 etid 39 c omnetpp::cMessage n "250 OK" m 4 pe -1 cid 39
+
+E # 63 t 6.799254009217 m 6 ce 61 msg 40
+DM id 40 tid 36 eid 40 etid 36 c omnetpp::cMessage n EMAIL m 6 pe 63
+
+E # 64 t 6.800254009217 m 3 ce 62 msg 39
+DM id 39 tid 39 eid 39 etid 39 c omnetpp::cMessage n "250 OK" m 3 pe 64
+
+E # 65 t 7.185689232778 m 6 ce 41 msg 2
+- INFO: Client hostB starting SMTP session to hostA
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 7.185689232778 am 6 at 7.285689232778 pe 65
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 7.185689232778 am 6 at 7.285689232778 pe 65
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 7.185689232778 am 6 at 9.185689232778 pe 65
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 7.185689232778 am 6 at 9.185689232778 pe 65
+
+E # 66 t 7.285689232778 m 6 ce 65 msg 3
+- INFO: Client hostB executing step: HELLO
+CM id 41 tid 41 eid 41 etid 41 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: HELLO
+BS id 41 tid 41 eid 41 etid 41 c peyal::SMTPCommand n HELLO m 6 pe 66
+SH sm 6 sg 3 pd 0.001
+ES id 41 tid 41 eid 41 etid 41 c peyal::SMTPCommand n HELLO sm 6 sg 3 st 7.285689232778 am 5 ag 1048577 at 7.286689232778 pe 66
+CL id 42 tid 41 eid 42 etid 41 c omnetpp::cMessage n HELLO m 6 pe -1 cid 41
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 7.285689232778 am 6 at 7.785689232778 pe 66
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 7.285689232778 am 6 at 7.785689232778 pe 66
+
+E # 67 t 7.286689232778 m 5 ce 66 msg 41
+- INFO: Server hostB received: HELLO from hostB
+CM id 42 tid 42 eid 42 etid 42 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 42 tid 42 eid 42 etid 42 c peyal::SMTPResponse n "250 OK" m 5 pe 67
+SH sm 5 sg 2621440 pd 0.001
+ES id 42 tid 42 eid 42 etid 42 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 7.286689232778 am 6 ag 0 at 7.287689232778 pe 67
+CL id 43 tid 42 eid 43 etid 42 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 42
+DM id 41 tid 41 eid 41 etid 41 c omnetpp::cMessage n HELLO m 5 pe 67
+
+E # 68 t 7.287689232778 m 6 ce 67 msg 42
+- INFO: Client hostB received response: 250 Hello Hello from hostB
+DM id 42 tid 42 eid 42 etid 42 c omnetpp::cMessage n "250 OK" m 6 pe 68
+
+E # 69 t 7.295254009217 m 2 ce 57 msg 1
+- INFO: Client hostA executing step: QUIT
+CM id 43 tid 43 eid 43 etid 43 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending: QUIT
+BS id 43 tid 43 eid 43 etid 43 c peyal::SMTPCommand n QUIT m 2 pe 69
+SH sm 2 sg 3 pd 0.001
+ES id 43 tid 43 eid 43 etid 43 c peyal::SMTPCommand n QUIT sm 2 sg 3 st 7.295254009217 am 3 ag 1048576 at 7.296254009217 pe 69
+CL id 44 tid 43 eid 44 etid 43 c omnetpp::cMessage n QUIT m 2 pe -1 cid 43
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 7.295254009217 am 2 at 7.795254009217 pe 69
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 7.295254009217 am 2 at 7.795254009217 pe 69
+
+E # 70 t 7.296254009217 m 3 ce 69 msg 43
+- INFO: Server hostA received: QUIT from hostA
+CM id 44 tid 44 eid 44 etid 44 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 221 BYE via out[1]
+BS id 44 tid 44 eid 44 etid 44 c peyal::SMTPResponse n "221 BYE" m 3 pe 70
+SH sm 3 sg 2621441 pd 0.001
+ES id 44 tid 44 eid 44 etid 44 c peyal::SMTPResponse n "221 BYE" sm 3 sg 2621441 st 7.296254009217 am 2 ag 0 at 7.297254009217 pe 70
+CL id 45 tid 44 eid 45 etid 44 c omnetpp::cMessage n "221 BYE" m 3 pe -1 cid 44
+DM id 43 tid 43 eid 43 etid 43 c omnetpp::cMessage n QUIT m 3 pe 70
+
+E # 71 t 7.297254009217 m 2 ce 70 msg 44
+- INFO: Client hostA received response: 221 Goodbye
+DM id 44 tid 44 eid 44 etid 44 c omnetpp::cMessage n "221 BYE" m 2 pe 71
+
+E # 72 t 7.785689232778 m 6 ce 66 msg 3
+- INFO: Client hostB executing step: EMAIL
+CM id 45 tid 45 eid 45 etid 45 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending email (trust=0.2)
+BS id 45 tid 45 eid 45 etid 45 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 6 pe 72
+SH sm 6 sg 3 pd 0.001
+ES id 45 tid 45 eid 45 etid 45 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 6 sg 3 st 7.785689232778 am 5 ag 1048577 at 7.786689232778 pe 72
+CL id 46 tid 45 eid 46 etid 45 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 6 pe -1 cid 45
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 7.785689232778 am 6 at 8.285689232778 pe 72
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 7.785689232778 am 6 at 8.285689232778 pe 72
+
+E # 73 t 7.786689232778 m 5 ce 72 msg 45
+- INFO: Server hostB received email from hostB@example.com trust=0.2 via in[1]
+CM id 46 tid 46 eid 46 etid 46 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 46 tid 46 eid 46 etid 46 c peyal::SMTPResponse n "250 OK" m 5 pe 73
+SH sm 5 sg 2621440 pd 0.001
+ES id 46 tid 46 eid 46 etid 46 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 7.786689232778 am 6 ag 0 at 7.787689232778 pe 73
+CL id 47 tid 46 eid 47 etid 46 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 46
+CL id 47 tid 45 eid 47 etid 45 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 45
+- INFO: Server hostB relaying email to TM via out[1]
+BS id 47 tid 45 eid 47 etid 45 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 5 pe 73
+SH sm 5 sg 2621441 pd 0.001
+ES id 47 tid 45 eid 47 etid 45 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 5 sg 2621441 st 7.786689232778 am 4 ag 1048577 at 7.787689232778 pe 73
+CL id 48 tid 45 eid 48 etid 45 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 47
+DM id 45 tid 45 eid 45 etid 45 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe 73
+
+E # 74 t 7.787689232778 m 6 ce 73 msg 46
+- INFO: Client hostB received response: 250 Email received
+DM id 46 tid 46 eid 46 etid 46 c omnetpp::cMessage n "250 OK" m 6 pe 74
+
+E # 75 t 7.787689232778 m 4 ce 73 msg 47
+- INFO: TrustManager received email from hostB@example.com trust=0.2
+- INFO: TrustManager: DROPPING email (trust=0.2 < 0.3)
+DM id 47 tid 45 eid 47 etid 45 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 4 pe 75
+
+E # 76 t 7.795254009217 m 2 ce 69 msg 1
+
+E # 77 t 8.285689232778 m 6 ce 72 msg 3
+- INFO: Client hostB executing step: QUIT
+CM id 48 tid 48 eid 48 etid 48 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: QUIT
+BS id 48 tid 48 eid 48 etid 48 c peyal::SMTPCommand n QUIT m 6 pe 77
+SH sm 6 sg 3 pd 0.001
+ES id 48 tid 48 eid 48 etid 48 c peyal::SMTPCommand n QUIT sm 6 sg 3 st 8.285689232778 am 5 ag 1048577 at 8.286689232778 pe 77
+CL id 49 tid 48 eid 49 etid 48 c omnetpp::cMessage n QUIT m 6 pe -1 cid 48
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 8.285689232778 am 6 at 8.785689232778 pe 77
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 8.285689232778 am 6 at 8.785689232778 pe 77
+
+E # 78 t 8.286689232778 m 5 ce 77 msg 48
+- INFO: Server hostB received: QUIT from hostB
+CM id 49 tid 49 eid 49 etid 49 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 221 BYE via out[0]
+BS id 49 tid 49 eid 49 etid 49 c peyal::SMTPResponse n "221 BYE" m 5 pe 78
+SH sm 5 sg 2621440 pd 0.001
+ES id 49 tid 49 eid 49 etid 49 c peyal::SMTPResponse n "221 BYE" sm 5 sg 2621440 st 8.286689232778 am 6 ag 0 at 8.287689232778 pe 78
+CL id 50 tid 49 eid 50 etid 49 c omnetpp::cMessage n "221 BYE" m 5 pe -1 cid 49
+DM id 48 tid 48 eid 48 etid 48 c omnetpp::cMessage n QUIT m 5 pe 78
+
+E # 79 t 8.287689232778 m 6 ce 78 msg 49
+- INFO: Client hostB received response: 221 Goodbye
+DM id 49 tid 49 eid 49 etid 49 c omnetpp::cMessage n "221 BYE" m 6 pe 79
+
+E # 80 t 8.785689232778 m 6 ce 77 msg 3
+
+E # 81 t 9.185689232778 m 6 ce 65 msg 2
+- INFO: Client hostB starting SMTP session to hostA
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 9.185689232778 am 6 at 9.285689232778 pe 81
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 9.185689232778 am 6 at 9.285689232778 pe 81
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 9.185689232778 am 6 at 11.185689232778 pe 81
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 9.185689232778 am 6 at 11.185689232778 pe 81
+
+E # 82 t 9.285689232778 m 6 ce 81 msg 3
+- INFO: Client hostB executing step: HELLO
+CM id 50 tid 50 eid 50 etid 50 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: HELLO
+BS id 50 tid 50 eid 50 etid 50 c peyal::SMTPCommand n HELLO m 6 pe 82
+SH sm 6 sg 3 pd 0.001
+ES id 50 tid 50 eid 50 etid 50 c peyal::SMTPCommand n HELLO sm 6 sg 3 st 9.285689232778 am 5 ag 1048577 at 9.286689232778 pe 82
+CL id 51 tid 50 eid 51 etid 50 c omnetpp::cMessage n HELLO m 6 pe -1 cid 50
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 9.285689232778 am 6 at 9.785689232778 pe 82
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 9.285689232778 am 6 at 9.785689232778 pe 82
+
+E # 83 t 9.286689232778 m 5 ce 82 msg 50
+- INFO: Server hostB received: HELLO from hostB
+CM id 51 tid 51 eid 51 etid 51 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 51 tid 51 eid 51 etid 51 c peyal::SMTPResponse n "250 OK" m 5 pe 83
+SH sm 5 sg 2621440 pd 0.001
+ES id 51 tid 51 eid 51 etid 51 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 9.286689232778 am 6 ag 0 at 9.287689232778 pe 83
+CL id 52 tid 51 eid 52 etid 51 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 51
+DM id 50 tid 50 eid 50 etid 50 c omnetpp::cMessage n HELLO m 5 pe 83
+
+E # 84 t 9.287689232778 m 6 ce 83 msg 51
+- INFO: Client hostB received response: 250 Hello Hello from hostB
+DM id 51 tid 51 eid 51 etid 51 c omnetpp::cMessage n "250 OK" m 6 pe 84
+
+E # 85 t 9.785689232778 m 6 ce 82 msg 3
+- INFO: Client hostB executing step: EMAIL
+CM id 52 tid 52 eid 52 etid 52 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending email (trust=0.2)
+BS id 52 tid 52 eid 52 etid 52 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 6 pe 85
+SH sm 6 sg 3 pd 0.001
+ES id 52 tid 52 eid 52 etid 52 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 6 sg 3 st 9.785689232778 am 5 ag 1048577 at 9.786689232778 pe 85
+CL id 53 tid 52 eid 53 etid 52 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 6 pe -1 cid 52
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 9.785689232778 am 6 at 10.285689232778 pe 85
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 9.785689232778 am 6 at 10.285689232778 pe 85
+
+E # 86 t 9.786689232778 m 5 ce 85 msg 52
+- INFO: Server hostB received email from hostB@example.com trust=0.2 via in[1]
+CM id 53 tid 53 eid 53 etid 53 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 250 OK via out[0]
+BS id 53 tid 53 eid 53 etid 53 c peyal::SMTPResponse n "250 OK" m 5 pe 86
+SH sm 5 sg 2621440 pd 0.001
+ES id 53 tid 53 eid 53 etid 53 c peyal::SMTPResponse n "250 OK" sm 5 sg 2621440 st 9.786689232778 am 6 ag 0 at 9.787689232778 pe 86
+CL id 54 tid 53 eid 54 etid 53 c omnetpp::cMessage n "250 OK" m 5 pe -1 cid 53
+CL id 54 tid 52 eid 54 etid 52 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 52
+- INFO: Server hostB relaying email to TM via out[1]
+BS id 54 tid 52 eid 54 etid 52 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" m 5 pe 86
+SH sm 5 sg 2621441 pd 0.001
+ES id 54 tid 52 eid 54 etid 52 c peyal::SMTPData n "EMAIL (Trust: 0.200000)" sm 5 sg 2621441 st 9.786689232778 am 4 ag 1048577 at 9.787689232778 pe 86
+CL id 55 tid 52 eid 55 etid 52 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe -1 cid 54
+DM id 52 tid 52 eid 52 etid 52 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 5 pe 86
+
+E # 87 t 9.787689232778 m 6 ce 86 msg 53
+- INFO: Client hostB received response: 250 Email received
+DM id 53 tid 53 eid 53 etid 53 c omnetpp::cMessage n "250 OK" m 6 pe 87
+
+E # 88 t 9.787689232778 m 4 ce 86 msg 54
+- INFO: TrustManager received email from hostB@example.com trust=0.2
+- INFO: TrustManager: DROPPING email (trust=0.2 < 0.3)
+DM id 54 tid 52 eid 54 etid 52 c omnetpp::cMessage n "EMAIL (Trust: 0.200000)" m 4 pe 88
+
+E # 89 t 10.195254009217 m 2 ce 49 msg 0
+- INFO: Client hostA starting SMTP session to hostB
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 10.195254009217 am 2 at 10.295254009217 pe 89
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 10.195254009217 am 2 at 10.295254009217 pe 89
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 10.195254009217 am 2 at 14.195254009217 pe 89
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 10.195254009217 am 2 at 14.195254009217 pe 89
+
+E # 90 t 10.285689232778 m 6 ce 85 msg 3
+- INFO: Client hostB executing step: QUIT
+CM id 55 tid 55 eid 55 etid 55 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: QUIT
+BS id 55 tid 55 eid 55 etid 55 c peyal::SMTPCommand n QUIT m 6 pe 90
+SH sm 6 sg 3 pd 0.001
+ES id 55 tid 55 eid 55 etid 55 c peyal::SMTPCommand n QUIT sm 6 sg 3 st 10.285689232778 am 5 ag 1048577 at 10.286689232778 pe 90
+CL id 56 tid 55 eid 56 etid 55 c omnetpp::cMessage n QUIT m 6 pe -1 cid 55
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 10.285689232778 am 6 at 10.785689232778 pe 90
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 10.285689232778 am 6 at 10.785689232778 pe 90
+
+E # 91 t 10.286689232778 m 5 ce 90 msg 55
+- INFO: Server hostB received: QUIT from hostB
+CM id 56 tid 56 eid 56 etid 56 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending: 221 BYE via out[0]
+BS id 56 tid 56 eid 56 etid 56 c peyal::SMTPResponse n "221 BYE" m 5 pe 91
+SH sm 5 sg 2621440 pd 0.001
+ES id 56 tid 56 eid 56 etid 56 c peyal::SMTPResponse n "221 BYE" sm 5 sg 2621440 st 10.286689232778 am 6 ag 0 at 10.287689232778 pe 91
+CL id 57 tid 56 eid 57 etid 56 c omnetpp::cMessage n "221 BYE" m 5 pe -1 cid 56
+DM id 55 tid 55 eid 55 etid 55 c omnetpp::cMessage n QUIT m 5 pe 91
+
+E # 92 t 10.287689232778 m 6 ce 91 msg 56
+- INFO: Client hostB received response: 221 Goodbye
+DM id 56 tid 56 eid 56 etid 56 c omnetpp::cMessage n "221 BYE" m 6 pe 92
+
+E # 93 t 10.295254009217 m 2 ce 89 msg 1
+- INFO: Client hostA executing step: HELLO
+CM id 57 tid 57 eid 57 etid 57 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending: HELLO
+BS id 57 tid 57 eid 57 etid 57 c peyal::SMTPCommand n HELLO m 2 pe 93
+SH sm 2 sg 3 pd 0.001
+ES id 57 tid 57 eid 57 etid 57 c peyal::SMTPCommand n HELLO sm 2 sg 3 st 10.295254009217 am 3 ag 1048576 at 10.296254009217 pe 93
+CL id 58 tid 57 eid 58 etid 57 c omnetpp::cMessage n HELLO m 2 pe -1 cid 57
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 10.295254009217 am 2 at 10.795254009217 pe 93
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 10.295254009217 am 2 at 10.795254009217 pe 93
+
+E # 94 t 10.296254009217 m 3 ce 93 msg 57
+- INFO: Server hostA received: HELLO from hostA
+CM id 58 tid 58 eid 58 etid 58 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 250 OK via out[1]
+BS id 58 tid 58 eid 58 etid 58 c peyal::SMTPResponse n "250 OK" m 3 pe 94
+SH sm 3 sg 2621441 pd 0.001
+ES id 58 tid 58 eid 58 etid 58 c peyal::SMTPResponse n "250 OK" sm 3 sg 2621441 st 10.296254009217 am 2 ag 0 at 10.297254009217 pe 94
+CL id 59 tid 58 eid 59 etid 58 c omnetpp::cMessage n "250 OK" m 3 pe -1 cid 58
+DM id 57 tid 57 eid 57 etid 57 c omnetpp::cMessage n HELLO m 3 pe 94
+
+E # 95 t 10.297254009217 m 2 ce 94 msg 58
+- INFO: Client hostA received response: 250 Hello Hello from hostA
+DM id 58 tid 58 eid 58 etid 58 c omnetpp::cMessage n "250 OK" m 2 pe 95
+
+E # 96 t 10.785689232778 m 6 ce 90 msg 3
+
+E # 97 t 10.795254009217 m 2 ce 93 msg 1
+- INFO: Client hostA executing step: EMAIL
+CM id 59 tid 59 eid 59 etid 59 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostA sending email (trust=0.9)
+BS id 59 tid 59 eid 59 etid 59 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" m 2 pe 97
+SH sm 2 sg 3 pd 0.001
+ES id 59 tid 59 eid 59 etid 59 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" sm 2 sg 3 st 10.795254009217 am 3 ag 1048576 at 10.796254009217 pe 97
+CL id 60 tid 59 eid 60 etid 59 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 2 pe -1 cid 59
+BS id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 10.795254009217 am 2 at 11.295254009217 pe 97
+ES id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer sm 2 st 10.795254009217 am 2 at 11.295254009217 pe 97
+
+E # 98 t 10.796254009217 m 3 ce 97 msg 59
+- INFO: Server hostA received email from hostA@example.com trust=0.9 via in[0]
+CM id 60 tid 60 eid 60 etid 60 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostA sending: 250 OK via out[1]
+BS id 60 tid 60 eid 60 etid 60 c peyal::SMTPResponse n "250 OK" m 3 pe 98
+SH sm 3 sg 2621441 pd 0.001
+ES id 60 tid 60 eid 60 etid 60 c peyal::SMTPResponse n "250 OK" sm 3 sg 2621441 st 10.796254009217 am 2 ag 0 at 10.797254009217 pe 98
+CL id 61 tid 60 eid 61 etid 60 c omnetpp::cMessage n "250 OK" m 3 pe -1 cid 60
+CL id 61 tid 59 eid 61 etid 59 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe -1 cid 59
+- INFO: Server hostA relaying email to TM via out[0]
+BS id 61 tid 59 eid 61 etid 59 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" m 3 pe 98
+SH sm 3 sg 2621440 pd 0.001
+ES id 61 tid 59 eid 61 etid 59 c peyal::SMTPData n "EMAIL (Trust: 0.900000)" sm 3 sg 2621440 st 10.796254009217 am 4 ag 1048576 at 10.797254009217 pe 98
+CL id 62 tid 59 eid 62 etid 59 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe -1 cid 61
+DM id 59 tid 59 eid 59 etid 59 c omnetpp::cMessage n "EMAIL (Trust: 0.900000)" m 3 pe 98
+
+SE e 0 c -1 m ""

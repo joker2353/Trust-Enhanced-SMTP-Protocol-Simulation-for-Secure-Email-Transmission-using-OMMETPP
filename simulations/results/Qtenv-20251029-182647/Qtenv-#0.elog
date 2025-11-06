@@ -1,0 +1,90 @@
+SB ov 1538 ev 2 rid Qtenv-0-20251029-18:26:47-19756
+
+E # 0 t 0 m 1 ce -1 msg -1
+MC id 1 c omnetpp::cModule t peyal.TrustSMTPNetwork n TrustSMTPNetwork cm 1
+MDC id 1 d ""
+MC id 2 c SMTPClient t peyal.SMTPClient pid 1 n hostA
+GC m 2 g 0 n in o 0
+GC m 2 g 3 n out o 1
+MDC id 2 d is=email;p=100,200;i=block/email
+MC id 3 c SMTPServer t peyal.SMTPServer pid 1 n srvA
+MDC id 3 d is=server;p=200,200;i=block/server
+GC m 3 g 1048576 n in i 0 o 0
+GC m 3 g 1048577 n in i 1 o 0
+GC m 3 g 2621440 n out i 0 o 1
+GC m 3 g 2621441 n out i 1 o 1
+MC id 4 c TrustManager t peyal.TrustManager pid 1 n tm
+MDC id 4 d is=firewall;p=300,200;i=block/firewall
+GC m 4 g 1048576 n in i 0 o 0
+GC m 4 g 1048577 n in i 1 o 0
+GC m 4 g 2621440 n out i 0 o 1
+GC m 4 g 2621441 n out i 1 o 1
+MC id 5 c SMTPServer t peyal.SMTPServer pid 1 n srvB
+MDC id 5 d is=server;p=400,200;i=block/server
+GC m 5 g 1048576 n in i 0 o 0
+GC m 5 g 1048577 n in i 1 o 0
+GC m 5 g 2621440 n out i 0 o 1
+GC m 5 g 2621441 n out i 1 o 1
+MC id 6 c SMTPClient t peyal.SMTPClient pid 1 n hostB
+GC m 6 g 0 n in o 0
+GC m 6 g 3 n out o 1
+MDC id 6 d is=email;p=500,200;i=block/email
+CC sm 2 sg 3 dm 3 dg 1048576
+CDC sm 2 sg 3 d ls=blue,3
+CC sm 3 sg 2621440 dm 4 dg 1048576
+CDC sm 3 sg 2621440 d ls=blue,3
+CC sm 4 sg 2621440 dm 5 dg 1048576
+CDC sm 4 sg 2621440 d ls=blue,3
+CC sm 5 sg 2621440 dm 6 dg 0
+CDC sm 5 sg 2621440 d ls=blue,3
+CC sm 6 sg 3 dm 5 dg 1048577
+CDC sm 6 sg 3 d ls=blue,3
+CC sm 5 sg 2621441 dm 4 dg 1048577
+CDC sm 5 sg 2621441 d ls=blue,3
+CC sm 4 sg 2621441 dm 3 dg 1048577
+CDC sm 4 sg 2621441 d ls=blue,3
+CC sm 3 sg 2621441 dm 2 dg 0
+CDC sm 3 sg 2621441 d ls=blue,3
+CMB sm 1 tm 2 m initialize(0)
+CM id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer pe -1
+CM id 1 tid 1 eid 1 etid 1 c omnetpp::cMessage n smtpTimer pe -1
+BS id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 0 am 2 at 2.195254009217 pe 0
+ES id 0 tid 0 eid 0 etid 0 c omnetpp::cMessage n sendTimer sm 2 st 0 am 2 at 2.195254009217 pe 0
+CME
+CMB sm 1 tm 3 m initialize(0)
+CME
+CMB sm 1 tm 4 m initialize(0)
+CME
+CMB sm 1 tm 5 m initialize(0)
+CME
+CMB sm 1 tm 6 m initialize(0)
+CM id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer pe -1
+CM id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer pe -1
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 0 am 6 at 1.185689232778 pe 0
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 0 am 6 at 1.185689232778 pe 0
+CME
+
+E # 1 t 1.185689232778 m 6 ce 0 msg 2
+- INFO: Client hostB starting SMTP session to hostA
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.185689232778 am 6 at 1.285689232778 pe 1
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.185689232778 am 6 at 1.285689232778 pe 1
+BS id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 1.185689232778 am 6 at 3.185689232778 pe 1
+ES id 2 tid 2 eid 2 etid 2 c omnetpp::cMessage n sendTimer sm 6 st 1.185689232778 am 6 at 3.185689232778 pe 1
+
+E # 2 t 1.285689232778 m 6 ce 1 msg 3
+- INFO: Client hostB executing SMTP step: EHLO
+CM id 4 tid 4 eid 4 etid 4 c omnetpp::cMessage n "" pe -1
+- INFO: Client hostB sending: EHLO hostB.example.com
+BS id 4 tid 4 eid 4 etid 4 c peyal::SMTPCommand n HELLO m 6 pe 2
+SH sm 6 sg 3 pd 0.001
+ES id 4 tid 4 eid 4 etid 4 c peyal::SMTPCommand n HELLO sm 6 sg 3 st 1.285689232778 am 5 ag 1048577 at 1.286689232778 pe 2
+CL id 5 tid 4 eid 5 etid 4 c omnetpp::cMessage n HELLO m 6 pe -1 cid 4
+BS id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.285689232778 am 6 at 1.485689232778 pe 2
+ES id 3 tid 3 eid 3 etid 3 c omnetpp::cMessage n smtpTimer sm 6 st 1.285689232778 am 6 at 1.485689232778 pe 2
+
+E # 3 t 1.286689232778 m 5 ce 2 msg 4
+- INFO: Server hostB received command: EHLO hostB.example.com from hostB
+CM id 5 tid 5 eid 5 etid 5 c omnetpp::cMessage n "" pe -1
+- INFO: Server hostB sending response: 250 smtp.hostB.com Hello hostB.example.com
+
+SE e 1 c 10 m "No gate index specified when accessing vector gate 'out'"

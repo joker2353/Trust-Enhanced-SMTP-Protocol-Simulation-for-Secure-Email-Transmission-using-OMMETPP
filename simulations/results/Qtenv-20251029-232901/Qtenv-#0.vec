@@ -1,0 +1,70 @@
+version 3
+run Qtenv-0-20251029-23:29:01-13452
+attr configname Qtenv
+attr datetime 20251029-23:29:01
+attr datetimef 20251029-232901
+attr experiment Qtenv
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network peyal.TrustSMTPNetwork
+attr processid 13452
+attr repetition 0
+attr replication #0
+attr resultdir results/Qtenv-20251029-232901
+attr runnumber 0
+attr seedset 0
+config network peyal.TrustSMTPNetwork
+config ned-path .;../src
+config sim-time-limit 60s
+config user-interface Qtenv
+config result-dir results/Qtenv-20251029-232901
+config *.tm.dropThreshold 0.3
+config *.hostA.sendInterval 4s
+config *.hostA.initialTrustScore 0.9
+config *.hostB.sendInterval 2s
+config *.hostB.initialTrustScore 0.2
+config "*.hostA.@display(\"p" "100,100;i=block/email;is=email\");"
+config "*.hostB.@display(\"p" "500,100;i=block/email;is=email\");"
+config "*.srvA.@display(\"p" "100,300;i=block/server;is=server\");"
+config "*.srvB.@display(\"p" "500,300;i=block/server;is=server\");"
+config "*.tm.@display(\"p" "300,200;i=block/firewall;is=firewall\");"
+config record-eventlog true
+config **.vector-recording true
+config **.scalar-recording true
+
+vector 0 TrustSMTPNetwork.srvB srv_hostB_commandTimes ETV
+vector 1 TrustSMTPNetwork.srvB srv_hostB_arrivalTimes ETV
+vector 2 TrustSMTPNetwork.srvA srv_hostA_commandTimes ETV
+vector 3 TrustSMTPNetwork.srvA srv_hostA_arrivalTimes ETV
+0	3	1.286689232778	1.286689232778
+0	11	2.286689232778	2.286689232778
+0	27	3.286689232778	3.286689232778
+0	38	4.286689232778	4.286689232778
+0	43	5.286689232778	5.286689232778
+0	51	6.286689232778	6.286689232778
+0	67	7.286689232778	7.286689232778
+0	78	8.286689232778	8.286689232778
+0	83	9.286689232778	9.286689232778
+0	91	10.286689232778	10.286689232778
+0	107	11.286689232778	11.286689232778
+1	6	1.786689232778	1.786689232778
+1	21	2.798254009217	2.798254009217
+1	33	3.786689232778	3.786689232778
+1	46	5.786689232778	5.786689232778
+1	61	6.798254009217	6.798254009217
+1	73	7.786689232778	7.786689232778
+1	86	9.786689232778	9.786689232778
+1	101	10.798254009217	10.798254009217
+2	14	2.296254009217	2.296254009217
+2	30	3.296254009217	3.296254009217
+2	54	6.296254009217	6.296254009217
+2	70	7.296254009217	7.296254009217
+2	94	10.296254009217	10.296254009217
+2	110	11.296254009217	11.296254009217
+3	18	2.796254009217	2.796254009217
+3	58	6.796254009217	6.796254009217
+3	98	10.796254009217	10.796254009217
+

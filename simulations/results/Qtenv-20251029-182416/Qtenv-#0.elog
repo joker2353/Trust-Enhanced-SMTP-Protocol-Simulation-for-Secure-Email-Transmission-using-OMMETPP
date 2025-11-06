@@ -1,0 +1,25 @@
+SB ov 1538 ev 2 rid Qtenv-0-20251029-18:24:16-20020
+
+E # 0 t 0 m 1 ce -1 msg -1
+MC id 1 c omnetpp::cModule t peyal.TrustSMTPNetwork n TrustSMTPNetwork cm 1
+MDC id 1 d ""
+MC id 2 c SMTPClient t peyal.SMTPClient pid 1 n hostA
+GC m 2 g 0 n in o 0
+GC m 2 g 3 n out o 1
+MDC id 2 d is=email;p=100,200;i=block/email
+MC id 3 c SMTPServer t peyal.SMTPServer pid 1 n srvA
+MDC id 3 d is=server;p=200,200;i=block/server
+MC id 4 c TrustManager t peyal.TrustManager pid 1 n tm
+MDC id 4 d is=firewall;p=300,200;i=block/firewall
+GC m 4 g 1048576 n in i 0 o 0
+GC m 4 g 1048577 n in i 1 o 0
+GC m 4 g 2621440 n out i 0 o 1
+GC m 4 g 2621441 n out i 1 o 1
+MC id 5 c SMTPServer t peyal.SMTPServer pid 1 n srvB
+MDC id 5 d is=server;p=400,200;i=block/server
+MC id 6 c SMTPClient t peyal.SMTPClient pid 1 n hostB
+GC m 6 g 0 n in o 0
+GC m 6 g 3 n out o 1
+MDC id 6 d is=email;p=500,200;i=block/email
+
+SE e 0 c -1 m ""

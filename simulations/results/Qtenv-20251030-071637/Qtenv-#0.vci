@@ -1,0 +1,47 @@
+file 1799 1761787024                                            
+version 3
+run Qtenv-0-20251030-07:16:37-18504
+attr configname Qtenv
+attr datetime 20251030-07:16:37
+attr datetimef 20251030-071637
+attr experiment Qtenv
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network peyal.TrustSMTPNetwork
+attr processid 18504
+attr repetition 0
+attr replication #0
+attr resultdir results/Qtenv-20251030-071637
+attr runnumber 0
+attr seedset 0
+config network peyal.TrustSMTPNetwork
+config ned-path .;../src
+config sim-time-limit 60s
+config user-interface Qtenv
+config result-dir results/Qtenv-20251030-071637
+config *.tm.dropThreshold 0.3
+config *.hostA.sendInterval 4s
+config *.hostA.initialTrustScore 0.9
+config *.hostB.sendInterval 2s
+config *.hostB.initialTrustScore 0.2
+config "*.hostA.@display(\"p" "100,100;i=block/email;is=email\");"
+config "*.hostB.@display(\"p" "500,100;i=block/email;is=email\");"
+config "*.srvA.@display(\"p" "100,300;i=block/server;is=server\");"
+config "*.srvB.@display(\"p" "500,300;i=block/server;is=server\");"
+config "*.tm.@display(\"p" "300,200;i=block/firewall;is=firewall\");"
+config record-eventlog true
+config **.vector-recording true
+config **.scalar-recording true
+
+vector 0 TrustSMTPNetwork.srvB srv_hostB_commandTimes ETV
+vector 1 TrustSMTPNetwork.srvB srv_hostB_arrivalTimes ETV
+vector 2 TrustSMTPNetwork.srvA srv_hostA_commandTimes ETV
+vector 3 TrustSMTPNetwork.srvA srv_hostA_arrivalTimes ETV
+0	1475 107 3 27 1.286689232778 3.286689232778 3 1.286689232778 3.286689232778 6.860067698334 17.686842941909
+1	1582 107 6 33 1.786689232778 3.786689232778 3 1.786689232778 3.786689232778 8.371632474773 25.361499260261
+2	1689 72 14 30 2.296254009217 3.296254009217 2 2.296254009217 3.296254009217 5.592508018434 16.138072968124
+3	1761 36 18 18 2.796254009217 2.796254009217 1 2.796254009217 2.796254009217 2.796254009217 7.8190364840621
+
